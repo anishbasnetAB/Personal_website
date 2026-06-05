@@ -9,7 +9,7 @@ export const portfolio = {
     github: "https://github.com/anishbasnetAB",
     openTo: "FinTech, trading systems, backend engineering, C++ systems roles in Canada",
     workAuth: "Valid PGWP — no sponsorship required",
-    cvUrl: "/anish-portfolio/Anish_Basnet_Resume.pdf",
+    cvUrl: "/Anish_Basnet_Resume.pdf",
   },
 
   hero: {
