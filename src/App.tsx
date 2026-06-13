@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { portfolio } from './data/portfolio';
+import Background from './components/Background';
 import Cursor from './components/Cursor';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
@@ -33,14 +34,16 @@ export default function App() {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>{portfolio.identity.name} — C++ Systems Engineer · Backend · Full Stack</title>
+        <title>{`${portfolio.identity.name} — ${portfolio.identity.title}`}</title>
         <meta name="description" content={portfolio.hero.tagline} />
-        <meta property="og:title" content={`${portfolio.identity.name} — Portfolio`} />
+        <meta property="og:title" content={`${portfolio.identity.name} — ${portfolio.identity.title}`} />
         <meta property="og:description" content={portfolio.hero.tagline} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary" />
+        <meta name="theme-color" content={theme === 'dark' ? '#0a0a0b' : '#f5f5f2'} />
       </Helmet>
 
+      <Background />
       <Cursor />
       <Nav theme={theme} toggleTheme={toggleTheme} />
 

@@ -4,6 +4,8 @@ export default function Cursor() {
   useEffect(() => {
     const cursor = document.getElementById('cursor');
     if (!cursor) return;
+    // CSS hides the custom cursor in these cases too; skip the listeners entirely.
+    if (!window.matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)').matches) return;
 
     const move = (e: MouseEvent) => {
       cursor.style.left = `${e.clientX}px`;
@@ -24,7 +26,7 @@ export default function Cursor() {
       }
     };
 
-    document.addEventListener('mousemove', move);
+    document.addEventListener('mousemove', move, { passive: true });
     document.addEventListener('mouseover', addHover);
     document.addEventListener('mouseout', removeHover);
 

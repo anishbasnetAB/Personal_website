@@ -1,5 +1,6 @@
 import React from 'react';
 import { portfolio } from '../data/portfolio';
+import Magnetic from './Magnetic';
 import { useInView } from '../hooks/useInView';
 
 const monoFont = { fontFamily: "'JetBrains Mono', monospace" };
@@ -16,7 +17,14 @@ export default function Contact() {
           <span className="section-rule-label">06 / Contact</span>
         </div>
 
-        <div className={`reveal ${inView ? 'visible' : ''}`} style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
+        <div className={`reveal ${inView ? 'visible' : ''}`} style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center', transitionDelay: '80ms' }}>
+          <div style={{ marginBottom: '1.5rem' }}>
+            <span className="status-pill">
+              <span className="status-dot" aria-hidden="true" />
+              {portfolio.hero.availability}
+            </span>
+          </div>
+
           <h2 style={{ ...displayFont, fontStyle: 'italic', fontSize: 'clamp(2.2rem, 5vw, 3.6rem)', color: 'var(--text-primary)', lineHeight: 1.05, marginBottom: '1.25rem' }}>
             {portfolio.contact.heading}
           </h2>
@@ -25,28 +33,27 @@ export default function Contact() {
             {portfolio.contact.note}
           </p>
 
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', justifyContent: 'center', marginBottom: '1.5rem' }}>
+            <Magnetic>
+              <a href={`mailto:${portfolio.identity.email}`} className="btn btn-filled">
+                <EmailIcon /> {portfolio.identity.email}
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a href={portfolio.identity.cvUrl} download className="btn btn-outlined">
+                Download Resume
+              </a>
+            </Magnetic>
+          </div>
+
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', justifyContent: 'center', marginBottom: '4rem' }}>
-            <a
-              href={`mailto:${portfolio.identity.email}`}
-              style={{
-                background: 'var(--accent)', color: 'var(--bg)',
-                ...monoFont, fontSize: '0.73rem', letterSpacing: '0.05em', fontWeight: 700,
-                padding: '0.7rem 1.6rem', borderRadius: '5px',
-                display: 'flex', alignItems: 'center', gap: '0.4rem',
-                transition: 'opacity 0.2s',
-              }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = '0.85')}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = '1')}
-            >
-              <EmailIcon /> {portfolio.identity.email}
-            </a>
             <IconBtn href={portfolio.identity.linkedin} label="LinkedIn"><LinkedInIcon /></IconBtn>
             <IconBtn href={portfolio.identity.github} label="GitHub"><GitHubIcon /></IconBtn>
           </div>
 
           <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.75rem' }}>
             <p style={{ ...monoFont, fontSize: '0.62rem', letterSpacing: '0.08em', color: 'var(--text-muted)' }}>
-              © 2026 Anish Basnet · Built with React + Vite
+              © 2026 Anish Basnet · Built with React + Vite · {portfolio.identity.location}
             </p>
           </div>
         </div>
@@ -58,26 +65,7 @@ export default function Contact() {
 
 function IconBtn({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
   return (
-    <a
-      href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-      style={{
-        border: '1px solid var(--border)', color: 'var(--text-secondary)',
-        fontFamily: "'JetBrains Mono', monospace", fontSize: '0.73rem',
-        letterSpacing: '0.05em', padding: '0.7rem 1.3rem',
-        borderRadius: '5px', display: 'flex', alignItems: 'center', gap: '0.4rem',
-        transition: 'border-color 0.2s, color 0.2s',
-      }}
-      onMouseEnter={e => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.borderColor = 'var(--accent)';
-        el.style.color = 'var(--accent)';
-      }}
-      onMouseLeave={e => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.borderColor = 'var(--border)';
-        el.style.color = 'var(--text-secondary)';
-      }}
-    >
+    <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="btn btn-ghost">
       {children} {label}
     </a>
   );

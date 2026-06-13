@@ -16,17 +16,22 @@ export default function Experience() {
           <span className="section-rule-label">02 / Work</span>
         </div>
 
-        <div style={{ position: 'relative' }}>
+        <h2 className={`section-title reveal ${inView ? 'visible' : ''}`} style={{ transitionDelay: '60ms' }}>
+          Where I've <em>shipped.</em>
+        </h2>
+
+        <div className="timeline" style={{ position: 'relative' }}>
           {/* Vertical timeline line */}
           <div
             aria-hidden="true"
+            className="timeline-line"
             style={{
               position: 'absolute',
               left: '7.5rem',
               top: '0.6rem',
-              bottom: '0',
+              bottom: '0.5rem',
               width: '1px',
-              background: 'var(--border)',
+              background: 'linear-gradient(to bottom, var(--accent), var(--border) 25%, var(--border) 90%, transparent)',
             }}
           />
 
@@ -37,6 +42,16 @@ export default function Experience() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 700px) {
+          .timeline-line { left: 0.45rem !important; }
+          .timeline-row { flex-direction: column !important; gap: 0.6rem !important; padding-left: 1.6rem; }
+          .timeline-date { width: auto !important; text-align: left !important; padding-top: 0 !important; }
+          .timeline-date span { display: inline !important; }
+          .timeline-dot { right: auto !important; left: -1.6rem !important; top: 0.25rem !important; }
+        }
+      `}</style>
     </section>
   );
 }
@@ -46,9 +61,9 @@ type Job = (typeof portfolio.experience)[number];
 function ExperienceRow({ job, index, inView }: { job: Job; index: number; inView: boolean }) {
   return (
     <div
-      className={`reveal ${inView ? 'visible' : ''}`}
+      className={`timeline-row reveal ${inView ? 'visible' : ''}`}
       style={{
-        transitionDelay: `${index * 90}ms`,
+        transitionDelay: `${120 + index * 100}ms`,
         display: 'flex',
         gap: '2.5rem',
         position: 'relative',
@@ -56,6 +71,7 @@ function ExperienceRow({ job, index, inView }: { job: Job; index: number; inView
     >
       {/* Date column */}
       <div
+        className="timeline-date"
         style={{
           ...monoFont,
           fontSize: '0.65rem',
@@ -74,15 +90,17 @@ function ExperienceRow({ job, index, inView }: { job: Job; index: number; inView
         {/* Dot */}
         <span
           aria-hidden="true"
+          className="timeline-dot"
           style={{
             position: 'absolute',
             right: '-1.3rem',
             top: '0.35rem',
-            width: '8px',
-            height: '8px',
+            width: '9px',
+            height: '9px',
             borderRadius: '50%',
             background: 'var(--accent)',
             border: '2px solid var(--bg)',
+            boxShadow: '0 0 10px color-mix(in srgb, var(--accent) 60%, transparent)',
             flexShrink: 0,
           }}
         />
@@ -91,7 +109,7 @@ function ExperienceRow({ job, index, inView }: { job: Job; index: number; inView
       {/* Content */}
       <div style={{ flex: 1, paddingLeft: '0.5rem' }}>
         <div style={{ marginBottom: '0.8rem', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '0.5rem 0.75rem' }}>
-          <span style={{ ...displayFont, fontSize: '1.2rem', color: 'var(--text-primary)' }}>
+          <span style={{ ...displayFont, fontSize: '1.25rem', color: 'var(--text-primary)' }}>
             {job.company}
           </span>
           <span style={{ ...monoFont, fontSize: '0.67rem', color: 'var(--accent)', letterSpacing: '0.05em' }}>
@@ -99,7 +117,7 @@ function ExperienceRow({ job, index, inView }: { job: Job; index: number; inView
           </span>
         </div>
 
-        <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '0.9rem' }}>
           {job.bullets.map((bullet, i) => (
             <li key={i} style={{ display: 'flex', gap: '0.7rem', alignItems: 'flex-start' }}>
               <span
@@ -120,6 +138,12 @@ function ExperienceRow({ job, index, inView }: { job: Job; index: number; inView
             </li>
           ))}
         </ul>
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+          {job.tech.map(t => (
+            <span key={t} className="tag-pill">{t}</span>
+          ))}
+        </div>
       </div>
     </div>
   );

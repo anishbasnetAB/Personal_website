@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { portfolio } from '../data/portfolio';
 import { useInView } from '../hooks/useInView';
 
 const monoFont = { fontFamily: "'JetBrains Mono', monospace" };
 const displayFont = { fontFamily: "'DM Serif Display', serif" };
+
+type Project = (typeof portfolio.projects)[number];
 
 export default function Projects() {
   const { ref, inView } = useInView();
@@ -18,14 +20,18 @@ export default function Projects() {
           <span className="section-rule-label">03 / Projects</span>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          {featured.map((p, i) => (
-            <ProjectCard key={p.title} project={p} index={i} inView={inView} fullWidth />
+        <h2 className={`section-title reveal ${inView ? 'visible' : ''}`} style={{ transitionDelay: '60ms' }}>
+          Selected work, treated as <em>case studies.</em>
+        </h2>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          {featured.map(p => (
+            <FeaturedCard key={p.title} project={p} inView={inView} />
           ))}
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.25rem' }} className="project-grid">
+          <div className="project-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {rest.map((p, i) => (
-              <ProjectCard key={p.title} project={p} index={featured.length + i} inView={inView} />
+              <ProjectCard key={p.title} project={p} index={i} inView={inView} />
             ))}
           </div>
         </div>
@@ -35,103 +41,154 @@ export default function Projects() {
         @media (max-width: 640px) {
           .project-grid { grid-template-columns: 1fr !important; }
         }
+        @media (max-width: 860px) {
+          .featured-inner { grid-template-columns: 1fr !important; }
+        }
       `}</style>
     </section>
   );
 }
 
-type Project = (typeof portfolio.projects)[number];
-
-function ProjectCard({ project, index, inView, fullWidth = false }: {
-  project: Project; index: number; inView: boolean; fullWidth?: boolean;
-}) {
-  const [hovered, setHovered] = useState(false);
-
+function FeaturedCard({ project, inView }: { project: Project; inView: boolean }) {
   return (
     <article
-      className={`reveal ${inView ? 'visible' : ''}`}
-      style={{
-        transitionDelay: `${index * 75}ms`,
-        background: 'var(--surface)',
-        border: `1px solid ${hovered ? 'color-mix(in srgb, var(--accent) 55%, var(--border))' : 'var(--border)'}`,
-        borderRadius: '10px',
-        padding: fullWidth ? '2rem 2.25rem' : '1.6rem 1.75rem',
-        boxShadow: hovered ? '0 4px 24px color-mix(in srgb, var(--accent) 8%, transparent)' : 'var(--card-shadow)',
-        transition: 'border-color 0.22s, box-shadow 0.22s',
-        display: 'flex', flexDirection: 'column', gap: '1rem',
-        position: 'relative',
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className={`featured-card reveal ${inView ? 'visible' : ''}`}
+      style={{ padding: 'clamp(1.5rem, 4vw, 2.75rem)', transitionDelay: '120ms' }}
     >
-      {project.featured && (
-        <span
-          style={{
-            position: 'absolute', top: '1.25rem', right: '1.25rem',
-            ...monoFont, fontSize: '0.58rem', letterSpacing: '0.12em', textTransform: 'uppercase',
-            color: 'var(--bg)', background: 'var(--accent)',
-            padding: '0.22rem 0.6rem', borderRadius: '3px', fontWeight: 700,
-          }}
-        >
-          Featured
-        </span>
-      )}
+      <div className="featured-inner" style={{ display: 'grid', gridTemplateColumns: '1.35fr 1fr', gap: '2.5rem' }}>
+        {/* ── Left: the story ── */}
+        <div>
+          <p style={{ ...monoFont, fontSize: '0.6rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '1rem' }}>
+            Featured · Case Study
+          </p>
 
-      {/* Tags */}
+          <h3 style={{ ...displayFont, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: 'var(--text-primary)', lineHeight: 1.18, marginBottom: '1.25rem' }}>
+            {project.title}
+          </h3>
+
+          <FieldLabel>The problem</FieldLabel>
+          <p style={{ fontSize: '0.92rem', lineHeight: 1.7, color: 'var(--text-secondary)', marginBottom: '1.25rem' }}>
+            {project.problem}
+          </p>
+
+          <FieldLabel>My role</FieldLabel>
+          <p style={{ fontSize: '0.92rem', lineHeight: 1.7, color: 'var(--text-secondary)', marginBottom: '1.25rem' }}>
+            {project.role}
+          </p>
+
+          <FieldLabel>System highlights</FieldLabel>
+          <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+            {project.highlights.map((h, i) => (
+              <li key={i} style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start' }}>
+                <span aria-hidden="true" style={{ ...monoFont, color: 'var(--accent)', fontSize: '0.75rem', lineHeight: 1.7 }}>▸</span>
+                <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>{h}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* ── Right: numbers, stack, links ── */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          <div className="glass" style={{ padding: '1.4rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+            <p style={{ ...monoFont, fontSize: '0.58rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+              Benchmarked performance
+            </p>
+            {project.stats.map(stat => (
+              <div key={stat.label}>
+                <div style={{ ...monoFont, fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 600, color: 'var(--accent)', lineHeight: 1.1 }}>
+                  {stat.value}
+                </div>
+                <div style={{ ...monoFont, fontSize: '0.62rem', color: 'var(--text-muted)', letterSpacing: '0.06em', marginTop: '0.2rem' }}>
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+            {project.tags.map(tag => (
+              <span key={tag} className="tag-pill">{tag}</span>
+            ))}
+          </div>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: 'auto' }}>
+            {project.liveUrl && (
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-filled" aria-label={`Live demo of ${project.title}`}>
+                <ExternalIcon /> Live Demo
+              </a>
+            )}
+            {project.githubUrl && (
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost" aria-label={`GitHub repository for ${project.title}`}>
+                <GitHubIcon /> Source
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ProjectCard({ project, index, inView }: { project: Project; index: number; inView: boolean }) {
+  return (
+    <article
+      className={`card card-lift reveal ${inView ? 'visible' : ''}`}
+      style={{
+        transitionDelay: `${200 + index * 90}ms`,
+        padding: '1.6rem 1.75rem',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.9rem',
+      }}
+    >
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
         {project.tags.map(tag => (
           <span key={tag} className="tag-pill">{tag}</span>
         ))}
       </div>
 
-      {/* Title */}
-      <h3 style={{ ...displayFont, fontSize: fullWidth ? '1.55rem' : '1.2rem', color: 'var(--text-primary)', lineHeight: 1.2, paddingRight: project.featured ? '5rem' : 0 }}>
+      <h3 style={{ ...displayFont, fontSize: '1.25rem', color: 'var(--text-primary)', lineHeight: 1.25 }}>
         {project.title}
       </h3>
 
-      {/* Stats */}
-      {project.stats.length > 0 && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.75rem' }}>
-          {project.stats.map(stat => (
-            <div key={stat.label}>
-              <div style={{ ...monoFont, fontSize: fullWidth ? '1.4rem' : '1.1rem', fontWeight: 600, color: 'var(--accent)', lineHeight: 1.1 }}>
-                {stat.value}
-              </div>
-              <div style={{ ...monoFont, fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.06em', marginTop: '0.15rem' }}>
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Description */}
-      <p style={{ fontSize: '0.9rem', lineHeight: 1.7, color: 'var(--text-secondary)', flex: 1 }}>
-        {project.description}
+      <p style={{ fontSize: '0.88rem', lineHeight: 1.68, color: 'var(--text-secondary)' }}>
+        {project.problem}
       </p>
 
-      {/* Links */}
-      <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center', paddingTop: '0.25rem', borderTop: '1px solid var(--border)', marginTop: 'auto' }}>
+      <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem', flex: 1 }}>
+        {project.highlights.map((h, i) => (
+          <li key={i} style={{ display: 'flex', gap: '0.55rem', alignItems: 'flex-start' }}>
+            <span aria-hidden="true" style={{ ...monoFont, color: 'var(--accent)', fontSize: '0.7rem', lineHeight: 1.7 }}>▸</span>
+            <span style={{ fontSize: '0.83rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>{h}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center', paddingTop: '0.8rem', borderTop: '1px solid var(--border)' }}>
         {project.liveUrl && (
           <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
              aria-label={`Live demo of ${project.title}`}
-             style={{ ...monoFont, fontSize: '0.68rem', letterSpacing: '0.05em', color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '0.35rem', transition: 'opacity 0.2s' }}
-             onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = '0.7')}
-             onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = '1')}>
+             className="link-arrow" style={{ color: 'var(--accent)' }}>
             <ExternalIcon /> Live Demo
           </a>
         )}
         {project.githubUrl && (
           <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-             aria-label={`GitHub — ${project.title}`}
-             style={{ ...monoFont, fontSize: '0.68rem', letterSpacing: '0.05em', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.35rem', transition: 'color 0.2s' }}
-             onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = 'var(--text-primary)')}
-             onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'var(--text-muted)')}>
-            <GitHubIcon /> GitHub
+             aria-label={`GitHub repository for ${project.title}`}
+             className="link-arrow" style={{ color: 'var(--text-muted)' }}>
+            <GitHubIcon /> Source
           </a>
         )}
       </div>
     </article>
+  );
+}
+
+function FieldLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p style={{ ...monoFont, fontSize: '0.58rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.4rem' }}>
+      {children}
+    </p>
   );
 }
 

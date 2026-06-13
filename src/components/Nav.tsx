@@ -8,11 +8,11 @@ interface NavProps {
 }
 
 const links = [
-  { label: 'About', href: '#about' },
-  { label: 'Work', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '#about', id: 'about' },
+  { label: 'Work', href: '#experience', id: 'experience' },
+  { label: 'Projects', href: '#projects', id: 'projects' },
+  { label: 'Skills', href: '#skills', id: 'skills' },
+  { label: 'Contact', href: '#contact', id: 'contact' },
 ];
 
 const monoFont = { fontFamily: "'JetBrains Mono', monospace" };
@@ -20,11 +20,31 @@ const monoFont = { fontFamily: "'JetBrains Mono', monospace" };
 export default function Nav({ theme, toggleTheme }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [active, setActive] = useState('');
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 48);
+    let raf = 0;
+    const update = () => {
+      setScrolled(window.scrollY > 48);
+      const pos = window.scrollY + window.innerHeight * 0.38;
+      let current = '';
+      for (const { id } of links) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= pos) current = id;
+      }
+      if (window.scrollY < 80) current = '';
+      setActive(current);
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   useEffect(() => {
@@ -39,7 +59,8 @@ export default function Nav({ theme, toggleTheme }: NavProps) {
           background: scrolled ? 'var(--nav-bg)' : 'transparent',
           borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
           backdropFilter: scrolled ? 'blur(16px)' : 'none',
-          transition: 'background 0.3s, border-color 0.3s, backdrop-filter 0.3s',
+          WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
+          transition: 'background 0.3s, border-color 0.3s',
         }}
         className="fixed top-0 left-0 right-0 z-50"
         aria-label="Primary navigation"
@@ -54,23 +75,32 @@ export default function Nav({ theme, toggleTheme }: NavProps) {
             style={{ ...monoFont, color: 'var(--accent)', fontSize: '1rem', fontWeight: 600, letterSpacing: '0.06em' }}
             aria-label="Home"
           >
-            {portfolio.identity.monogram}
+            <span style={{ color: 'var(--text-muted)' }}>~/</span>{portfolio.identity.monogram.toLowerCase()}
           </a>
 
           {/* Desktop nav */}
-          <div style={{ alignItems: 'center', gap: '2rem' }} className="nav-desktop">
+          <div style={{ alignItems: 'center', gap: '1.75rem' }} className="nav-desktop">
             {links.map(l => (
-              <NavLink key={l.href} href={l.href} label={l.label} />
+              <a key={l.href} href={l.href} className={`nav-link ${active === l.id ? 'active' : ''}`}>
+                {l.label}
+              </a>
             ))}
             <div style={{ width: '1px', height: '14px', background: 'var(--border)' }} aria-hidden="true" />
+            <a
+              href={portfolio.identity.cvUrl}
+              download
+              className="btn btn-outlined"
+              style={{ padding: '0.4rem 0.9rem', fontSize: '0.64rem' }}
+            >
+              Resume
+            </a>
             <a
               href={portfolio.identity.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              style={{ color: 'var(--text-muted)', transition: 'color 0.2s' }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = 'var(--accent)')}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'var(--text-muted)')}
+              className="nav-link"
+              style={{ padding: '0.2rem' }}
             >
               <GitHubIcon size={17} />
             </a>
@@ -84,7 +114,7 @@ export default function Nav({ theme, toggleTheme }: NavProps) {
               onClick={() => setMenuOpen(v => !v)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
-              style={{ background: 'none', border: 'none', cursor: 'none', padding: '4px', display: 'flex', flexDirection: 'column', gap: '5px' }}
+              style={{ background: 'none', border: 'none', padding: '4px', display: 'flex', flexDirection: 'column', gap: '5px' }}
             >
               {[0, 1, 2].map(i => (
                 <span
@@ -115,13 +145,13 @@ export default function Nav({ theme, toggleTheme }: NavProps) {
           position: 'fixed', inset: 0, zIndex: 40,
           background: 'var(--bg)',
           display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center', gap: '2.5rem',
+          alignItems: 'center', justifyContent: 'center', gap: '2.25rem',
           opacity: menuOpen ? 1 : 0,
           pointerEvents: menuOpen ? 'auto' : 'none',
           transition: 'opacity 0.25s ease',
         }}
       >
-        {links.map(l => (
+        {links.map((l, i) => (
           <a
             key={l.href}
             href={l.href}
@@ -129,65 +159,46 @@ export default function Nav({ theme, toggleTheme }: NavProps) {
             style={{
               fontFamily: "'DM Serif Display', serif",
               fontSize: '2.2rem',
-              color: 'var(--text-primary)',
-              transition: 'color 0.2s',
+              color: active === l.id ? 'var(--accent)' : 'var(--text-primary)',
+              opacity: menuOpen ? 1 : 0,
+              transform: menuOpen ? 'translateY(0)' : 'translateY(12px)',
+              transition: `opacity 0.3s ${i * 50}ms, transform 0.3s ${i * 50}ms, color 0.2s`,
             }}
-            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = 'var(--accent)')}
-            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'var(--text-primary)')}
           >
             {l.label}
           </a>
         ))}
+        <a
+          href={portfolio.identity.cvUrl}
+          download
+          onClick={() => setMenuOpen(false)}
+          className="btn btn-outlined"
+          style={{ marginTop: '0.5rem' }}
+        >
+          Download Resume
+        </a>
       </div>
     </>
   );
 }
 
-function NavLink({ href, label }: { href: string; label: string }) {
-  return (
-    <a
-      href={href}
-      style={{
-        ...monoFont,
-        fontSize: '0.68rem',
-        letterSpacing: '0.1em',
-        textTransform: 'uppercase',
-        color: 'var(--text-muted)',
-        transition: 'color 0.2s',
-      }}
-      onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = 'var(--text-primary)')}
-      onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'var(--text-muted)')}
-    >
-      {label}
-    </a>
-  );
-}
-
 function ThemeToggle({ theme, toggle }: { theme: Theme; toggle: () => void }) {
+  const [hover, setHover] = useState(false);
   return (
     <button
       onClick={toggle}
       aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
       style={{
         background: 'var(--surface)',
-        border: '1px solid var(--border)',
+        border: `1px solid ${hover ? 'var(--accent)' : 'var(--border)'}`,
         borderRadius: '6px',
         padding: '5px 8px',
-        color: 'var(--text-muted)',
-        cursor: 'none',
+        color: hover ? 'var(--accent)' : 'var(--text-muted)',
         display: 'flex',
         alignItems: 'center',
         transition: 'color 0.2s, border-color 0.2s',
-      }}
-      onMouseEnter={e => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.color = 'var(--accent)';
-        el.style.borderColor = 'var(--accent)';
-      }}
-      onMouseLeave={e => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.color = 'var(--text-muted)';
-        el.style.borderColor = 'var(--border)';
       }}
     >
       {theme === 'dark' ? <SunIcon /> : <MoonIcon />}

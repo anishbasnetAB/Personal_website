@@ -1,8 +1,10 @@
 import React from 'react';
 import { portfolio } from '../data/portfolio';
+import TerminalTyper from './TerminalTyper';
 import { useInView } from '../hooks/useInView';
 
 const monoFont = { fontFamily: "'JetBrains Mono', monospace" };
+const displayFont = { fontFamily: "'DM Serif Display', serif" };
 
 export default function About() {
   const { ref, inView } = useInView();
@@ -15,44 +17,27 @@ export default function About() {
           <span className="section-rule-label">01 / About</span>
         </div>
 
+        <h2 className={`section-title reveal ${inView ? 'visible' : ''}`} style={{ transitionDelay: '60ms' }}>
+          Systems-minded. <em>Full-stack capable.</em>
+        </h2>
+
         <div
-          className={`reveal ${inView ? 'visible' : ''}`}
-          style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'start' }}
+          className={`about-grid reveal ${inView ? 'visible' : ''}`}
+          style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'start', transitionDelay: '120ms' }}
         >
-          {/* ── Left: bio + terminal ── */}
+          {/* ── Left: bio + developer profile terminal ── */}
           <div>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.78, color: 'var(--text-secondary)', marginBottom: '2rem' }}>
               {portfolio.about.bio}
             </p>
-
-            <div className="terminal">
-              <div style={{ display: 'flex', gap: '6px', marginBottom: '0.9rem' }}>
-                <Dot color="#ff5f57" /><Dot color="#febc2e" /><Dot color="#28c840" />
-              </div>
-              {portfolio.about.terminalLines.map((line, i) => (
-                <div key={i} style={{ lineHeight: 1.9 }}>
-                  {line.prompt ? (
-                    <span>
-                      <span className="t-prompt">{line.prompt} </span>
-                      <span className="t-cmd">{line.command}</span>
-                    </span>
-                  ) : (
-                    <span className="t-output">{line.output}</span>
-                  )}
-                </div>
-              ))}
-              <span className="terminal-cursor">▋</span>
-            </div>
+            <TerminalTyper lines={portfolio.about.terminalLines} start={inView} title="profile — zsh" />
           </div>
 
-          {/* ── Right: highlight cards ── */}
+          {/* ── Right: info cards ── */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <InfoCard
               label="Education"
-              lines={[
-                'Lambton College — PGD, Computer Software Engineering · 2024–25',
-                'London Metropolitan University — BSc Computing, First Class Honours · 2019–22',
-              ]}
+              lines={portfolio.education.map(e => `${e.institution} — ${e.degree} · ${e.period}`)}
             />
             <InfoCard
               label="Work Authorization"
@@ -64,26 +49,48 @@ export default function About() {
             />
             <InfoCard
               label="Open To"
-              lines={[
-                portfolio.identity.openTo,
-                'On-site · hybrid · remote',
-              ]}
+              lines={[portfolio.identity.openTo, 'On-site · hybrid · remote']}
+            />
+            <InfoCard
+              label="Location"
+              lines={[portfolio.identity.location]}
             />
           </div>
+        </div>
+
+        {/* ── Focus areas ── */}
+        <div
+          className="focus-grid"
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem', marginTop: '3rem' }}
+        >
+          {portfolio.about.focusAreas.map((area, i) => (
+            <div
+              key={area.title}
+              className={`glass card-lift reveal ${inView ? 'visible' : ''}`}
+              style={{ padding: '1.5rem 1.6rem', transitionDelay: `${180 + i * 80}ms` }}
+            >
+              <p style={{ ...monoFont, fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.6rem' }}>
+                0{i + 1}
+              </p>
+              <h3 style={{ ...displayFont, fontSize: '1.15rem', color: 'var(--text-primary)', marginBottom: '0.55rem' }}>
+                {area.title}
+              </h3>
+              <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>
+                {area.body}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 700px) {
-          #about .reveal > div { grid-template-columns: 1fr !important; }
+        @media (max-width: 760px) {
+          .about-grid { grid-template-columns: 1fr !important; }
+          .focus-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
   );
-}
-
-function Dot({ color }: { color: string }) {
-  return <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: color, display: 'inline-block', flexShrink: 0 }} />;
 }
 
 function InfoCard({ label, lines, highlight = false }: { label: string; lines: string[]; highlight?: boolean }) {
@@ -100,7 +107,7 @@ function InfoCard({ label, lines, highlight = false }: { label: string; lines: s
         {label}
       </p>
       {lines.map((line, i) => (
-        <p key={i} style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: i > 0 ? '0.2rem' : 0 }}>
+        <p key={i} style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: i > 0 ? '0.25rem' : 0 }}>
           {line}
         </p>
       ))}

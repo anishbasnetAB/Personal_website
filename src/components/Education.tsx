@@ -17,14 +17,14 @@ export default function Education() {
         </div>
 
         <div
-          className={`reveal ${inView ? 'visible' : ''}`}
+          className="edu-grid"
           style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.25rem' }}
         >
-          {portfolio.education.map(edu => (
+          {portfolio.education.map((edu, i) => (
             <div
               key={edu.institution}
-              className="card"
-              style={{ padding: '1.75rem 2rem' }}
+              className={`card card-lift reveal ${inView ? 'visible' : ''}`}
+              style={{ padding: '1.75rem 2rem', transitionDelay: `${i * 80}ms` }}
             >
               <p style={{ ...monoFont, fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.9rem' }}>
                 {edu.period}
@@ -39,11 +39,32 @@ export default function Education() {
           ))}
         </div>
 
+        {/* Certifications */}
+        <div
+          className={`reveal ${inView ? 'visible' : ''}`}
+          style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: '1.25rem', transitionDelay: '180ms' }}
+        >
+          {portfolio.certifications.map(cert => (
+            <div
+              key={cert.name}
+              className="card"
+              style={{ padding: '0.85rem 1.25rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}
+            >
+              <span aria-hidden="true" style={{ ...monoFont, color: 'var(--accent)', fontSize: '0.8rem' }}>✓</span>
+              <div>
+                <p style={{ fontSize: '0.84rem', color: 'var(--text-primary)', lineHeight: 1.3 }}>{cert.name}</p>
+                <p style={{ ...monoFont, fontSize: '0.58rem', letterSpacing: '0.06em', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
+                  {cert.issuer} · {cert.year}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <style>{`
         @media (max-width: 600px) {
-          #education .reveal > div { grid-template-columns: 1fr !important; }
+          .edu-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
