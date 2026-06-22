@@ -6,7 +6,7 @@ name: "Anish Basnet",
 monogram: "AB",
 title: "Java Backend Developer · Spring Boot · React Full-Stack · C++ Systems",
 location: "Mississauga, Ontario, Canada",
-email: "[theanishbasnet@gmail.com](mailto:theanishbasnet@gmail.com)",
+email: "theanishbasnet@gmail.com",
 linkedin: "https://linkedin.com/in/theanishbasnet",
 github: "https://github.com/anishbasnetAB",
 openTo:
