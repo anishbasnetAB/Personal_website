@@ -40,7 +40,7 @@ export const portfolio = {
 
   about: {
     bio:
-      "I am a Junior Software Developer based in Mississauga, Ontario. I focus on building reliable REST APIs and backend systems with Java, Spring Boot, PostgreSQL, Spring Data JPA, Hibernate, Docker, and automated testing. I enjoy the backend side of development most, including API design, service logic, database transactions, validation, error handling, schema migrations, testing, and deployment. I also have full stack experience with React.js and REST API integration, along with a C++ systems background that helps me think carefully about concurrency, performance, data integrity, and system design.",
+      "I am a Junior Software Developer based in Mississauga, Ontario. I focus on building reliable REST APIs and backend systems with Java, Spring Boot, PostgreSQL, Spring Data JPA, Hibernate, Docker, and automated testing. I enjoy the backend side of development most, including API design, service logic, database transactions, validation, error handling, schema migrations, testing, and deployment. I also have full stack experience with React.js and REST API integration, along with a C++ systems background that helps me think carefully about concurrency, performance, data integrity, and system design. I am AWS Certified Cloud Practitioner and I am growing my cloud skills to build and deploy backend systems on AWS.",
     focusAreas: [
       {
         title: "Java Backend and Spring Boot APIs",
@@ -57,6 +57,11 @@ export const portfolio = {
         body:
           "React.js frontends connected to backend APIs, plus C++20 systems work with concurrency, performance benchmarking, Redis event streaming, WebSocket market data, and PostgreSQL persistence.",
       },
+      {
+        title: "Cloud with AWS",
+        body:
+          "AWS Certified Cloud Practitioner with working knowledge of core AWS services, cloud fundamentals, and deploying backend systems to the cloud.",
+      },
     ],
     terminalLines: [
       { type: 'cmd', text: './profile summary' },
@@ -65,6 +70,7 @@ export const portfolio = {
       { type: 'out', text: 'backend      Spring Data JPA, Hibernate, Flyway, Docker, JUnit, Mockito' },
       { type: 'out', text: 'full stack   React.js, TypeScript, JavaScript, API integration, forms, state handling' },
       { type: 'out', text: 'messaging    Kafka, Redis Pub/Sub, event driven architecture' },
+      { type: 'out', text: 'cloud        AWS Certified Cloud Practitioner' },
       { type: 'out', text: 'systems      C++20 and C++17, concurrency, Redis Pub/Sub, WebSocket, Linux' },
       { type: 'out', text: 'education    PGD Software Engineering, BSc Computer Science' },
       { type: 'out', text: 'status       open to work in Canada, no sponsorship required' },
@@ -252,6 +258,16 @@ export const portfolio = {
       ],
     },
     {
+      category: "Cloud",
+      items: [
+        "AWS Certified Cloud Practitioner",
+        "AWS EC2",
+        "AWS S3",
+        "AWS IAM",
+        "Cloud Fundamentals",
+      ],
+    },
+    {
       category: "Testing and DevOps",
       items: [
         "JUnit 5",
@@ -261,7 +277,6 @@ export const portfolio = {
         "Docker",
         "Docker Compose",
         "GitHub Actions CI/CD",
-        "AWS fundamentals",
         "Linux",
       ],
     },
@@ -313,7 +328,7 @@ export const portfolio = {
   ],
 
   certifications: [
-    { name: "Getting Started with Microsoft Azure", issuer: "Birdify LMSAFP", year: "Jan 2025" },
+    { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", year: "2025" },
     { name: "Responsive Web Design", issuer: "freeCodeCamp", year: "Feb 2023" },
   ],
 
