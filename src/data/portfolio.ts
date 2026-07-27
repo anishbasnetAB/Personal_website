@@ -9,6 +9,7 @@ export const portfolio = {
     email: "theanishbasnet@gmail.com",
     linkedin: "https://linkedin.com/in/theanishbasnet",
     github: "https://github.com/anishbasnetAB",
+    blog: "https://dev.to/anishbasnetab",
     openTo:
       "Open to Junior or Associate Software Developer roles in Canada, especially Java backend, Spring Boot API, full stack, fintech, and selected C++ systems roles",
     workAuth: "Valid PGWP with no sponsorship needed",

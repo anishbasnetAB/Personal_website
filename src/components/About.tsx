@@ -1,16 +1,14 @@
-import React from 'react';
+import type { RefObject } from 'react';
 import { portfolio } from '../data/portfolio';
 import TerminalTyper from './TerminalTyper';
 import { useInView } from '../hooks/useInView';
-
-const monoFont = { fontFamily: "'JetBrains Mono', monospace" };
-const displayFont = { fontFamily: "'DM Serif Display', serif" };
+import { monoFont, displayFont } from '../styles/fonts';
 
 export default function About() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="about" ref={ref as React.RefObject<HTMLElement>} className="section-pad">
+    <section id="about" ref={ref as RefObject<HTMLElement>} className="section-pad">
       <div className="page-container">
 
         <div className={`section-rule reveal ${inView ? 'visible' : ''}`}>

@@ -1,4 +1,5 @@
 import { useRef, type ReactNode, type PointerEvent } from 'react';
+import { prefersFinePointerAndMotion } from '../lib/pointer';
 
 /**
  * Wraps a button/link so it leans gently toward the cursor.
@@ -10,7 +11,7 @@ export default function Magnetic({ children, strength = 0.2 }: { children: React
   const onMove = (e: PointerEvent<HTMLSpanElement>) => {
     const el = ref.current;
     if (!el) return;
-    if (!window.matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)').matches) return;
+    if (!prefersFinePointerAndMotion()) return;
     const rect = el.getBoundingClientRect();
     const dx = e.clientX - (rect.left + rect.width / 2);
     const dy = e.clientY - (rect.top + rect.height / 2);

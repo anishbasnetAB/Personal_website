@@ -1,12 +1,10 @@
-import React from 'react';
+import type { RefObject } from 'react';
 import { portfolio } from '../data/portfolio';
 import AnimatedCounter from './AnimatedCounter';
 import Magnetic from './Magnetic';
 import TerminalTyper from './TerminalTyper';
 import { useInView } from '../hooks/useInView';
-
-const monoFont = { fontFamily: "'JetBrains Mono', monospace" };
-const displayFont = { fontFamily: "'DM Serif Display', serif" };
+import { monoFont, displayFont } from '../styles/fonts';
 
 export default function Hero() {
   const { ref, inView } = useInView({ threshold: 0.05 });
@@ -14,7 +12,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      ref={ref as React.RefObject<HTMLElement>}
+      ref={ref as RefObject<HTMLElement>}
       style={{ minHeight: '100svh', display: 'flex', alignItems: 'center', paddingTop: '6.5rem', paddingBottom: '4rem', position: 'relative' }}
     >
       <div className="page-container" style={{ width: '100%' }}>

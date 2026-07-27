@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { prefersFinePointerAndMotion } from '../lib/pointer';
 
 /**
  * Fixed full-viewport atmosphere: grid, noise, drifting gradient beams,
@@ -10,8 +11,7 @@ export default function Background() {
   useEffect(() => {
     const el = auraRef.current;
     if (!el) return;
-    const mq = window.matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)');
-    if (!mq.matches) return;
+    if (!prefersFinePointerAndMotion()) return;
 
     let targetX = window.innerWidth / 2;
     let targetY = window.innerHeight * 0.3;

@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
+import { prefersFinePointerAndMotion } from '../lib/pointer';
 
 export default function Cursor() {
   useEffect(() => {
     const cursor = document.getElementById('cursor');
     if (!cursor) return;
     // CSS hides the custom cursor in these cases too; skip the listeners entirely.
-    if (!window.matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)').matches) return;
+    if (!prefersFinePointerAndMotion()) return;
 
     const move = (e: MouseEvent) => {
       cursor.style.left = `${e.clientX}px`;

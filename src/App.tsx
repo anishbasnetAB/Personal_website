@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { HelmetProvider, Helmet } from 'react-helmet-async';
-import { portfolio } from './data/portfolio';
 import Background from './components/Background';
 import Cursor from './components/Cursor';
 import Nav from './components/Nav';
@@ -26,23 +24,14 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#0a0a0b' : '#f5f5f2');
     try { localStorage.setItem('portfolio-theme', theme); } catch { /* */ }
   }, [theme]);
 
   const toggleTheme = () => setTheme(t => (t === 'dark' ? 'light' : 'dark'));
 
   return (
-    <HelmetProvider>
-      <Helmet>
-        <title>{`${portfolio.identity.name} — ${portfolio.identity.title}`}</title>
-        <meta name="description" content={portfolio.hero.tagline} />
-        <meta property="og:title" content={`${portfolio.identity.name} — ${portfolio.identity.title}`} />
-        <meta property="og:description" content={portfolio.hero.tagline} />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="theme-color" content={theme === 'dark' ? '#0a0a0b' : '#f5f5f2'} />
-      </Helmet>
-
+    <>
       <Background />
       <Cursor />
       <Nav theme={theme} toggleTheme={toggleTheme} />
@@ -56,6 +45,6 @@ export default function App() {
         <Education />
         <Contact />
       </main>
-    </HelmetProvider>
+    </>
   );
 }
