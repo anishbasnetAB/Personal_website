@@ -5,7 +5,7 @@ export const portfolio = {
     name: "Anish Basnet",
     monogram: "AB",
     title: "Java Backend Developer | Spring Boot, PostgreSQL, Kafka | Financial & Distributed Systems",
-    location: "Mississauga, Ontario, Canada",
+    location: "Greater Toronto Area, Ontario, Canada",
     email: "theanishbasnet@gmail.com",
     linkedin: "https://linkedin.com/in/theanishbasnet",
     github: "https://github.com/anishbasnetAB",
