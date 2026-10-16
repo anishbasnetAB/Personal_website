@@ -82,10 +82,10 @@ export const portfolio = {
 
   experience: [
     {
-      company: "Independent",
-      role: "Backend Software Engineer · Independent Projects",
-      period: "Jan 2026 – Present",
-      subPeriod: "Greater Toronto Area, Canada",
+      company: "Self-employed",
+      role: "Backend Engineer (Independent Projects)",
+      period: "Apr 2026 – Present",
+      subPeriod: "Greater Toronto Area, Canada · Remote",
       tech: [
         "Java 21",
         "Spring Boot",
@@ -98,17 +98,17 @@ export const portfolio = {
         "System Design",
       ],
       bullets: [
-        "Built Ledger-Core, a Java 21 and Spring Boot banking backend focused on transaction correctness, concurrency control, idempotency, double-entry bookkeeping, reconciliation, and event-driven processing.",
-        "Achieved zero duplicate postings across 1,000 concurrent transfers over real HTTP against PostgreSQL, with 16 parallel workers and 50 requests deliberately replayed three times each.",
-        "Deployed a 3-replica Kubernetes (k3s) setup on AWS EC2 with health-gated zero-downtime rolling updates, backed by Docker, Flyway, and a GitHub Actions CI/CD pipeline.",
-        "Continued structured study in distributed systems, databases, cloud computing, and system design, and earned the AWS Certified Cloud Practitioner certification in July 2026.",
+        "Designing and shipping production-style backend systems focused on financial correctness, concurrency, and distributed systems after completing a postgraduate diploma in software engineering.",
+        "Built Ledger-Core, a Java 21 and Spring Boot banking backend with double-entry bookkeeping, an append-only ledger, optimistic locking, idempotent transfers, event-driven processing, and scheduled reconciliation; stress-tested 1,000 concurrent HTTP transfers with zero duplicate postings.",
+        "Built a C++20 trading exchange simulator with a price-time-priority matching engine benchmarked at 1.6M orders per second with p99 latency under 1 µs, plus pre-trade risk controls and real-time market-data distribution.",
+        "Deployed Ledger-Core on k3s with 3 replicas and zero-downtime rolling updates, and earned the AWS Certified Cloud Practitioner certification in July 2026.",
       ],
     },
     {
       company: "NexGen",
       role: "Software Developer",
-      period: "Jan 2023 – Dec 2023",
-      subPeriod: "Digital Pasal: inventory, store-credit, and payments platform for small retailers",
+      period: "Sep 2022 – Aug 2024",
+      subPeriod: "NexGen · Permanent Full-time · Digital Pasal payments and inventory platform · Nepal",
       tech: ["Java", "Spring Boot", "Spring Data JPA", "Hibernate", "REST APIs", "MySQL", "React", "JUnit 5", "Mockito", "Git", "Jira", "Agile"],
       bullets: [
         "Delivered accounts and payments features that supported Digital Pasal scaling from about 10 to 30 to 40 active retail shops, by building and shipping 10+ REST API endpoints across three client-facing modules using Java, Spring Boot, and Spring Data JPA within a six-person Agile team.",
@@ -119,8 +119,9 @@ export const portfolio = {
     },
     {
       company: "Leapfrog Technology",
-      role: "Student Partner",
-      period: "Jan 2022 – Dec 2022",
+      role: "Leapfrog Student Partner",
+      period: "Jan 2022 – Sep 2022",
+      subPeriod: "Leapfrog Technology, Inc. · Permanent Part-time · On-site",
       tech: ["React.js", "Node.js", "JavaScript", "Code Reviews", "Web Development"],
       bullets: [
         "Completed industry-oriented training in React.js, Node.js, and JavaScript through structured exercises, peer reviews, hackathons, and collaborative development activities.",
@@ -128,8 +129,9 @@ export const portfolio = {
     },
     {
       company: "Technobyte",
-      role: "Flutter Developer Intern",
-      period: "Dec 2021 – Mar 2022",
+      role: "Flutter Intern",
+      period: "Jul 2021 – Dec 2021",
+      subPeriod: "Technobyte · Internship",
       tech: ["Flutter", "Dart", "MySQL", "REST APIs", "Mobile Development", "Debugging"],
       bullets: [
         "Shipped Flutter user interface features in Dart across three mobile releases, by integrating MySQL-backed REST services and building reusable components.",

@@ -115,6 +115,12 @@ function ExperienceRow({ job, index, inView }: { job: Job; index: number; inView
           </span>
         </div>
 
+        {job.subPeriod && (
+          <p style={{ ...monoFont, fontSize: '0.62rem', color: 'var(--text-muted)', lineHeight: 1.5, marginBottom: '0.9rem' }}>
+            {job.subPeriod}
+          </p>
+        )}
+
         <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '0.9rem' }}>
           {job.bullets.map((bullet, i) => (
             <li key={i} style={{ display: 'flex', gap: '0.7rem', alignItems: 'flex-start' }}>
