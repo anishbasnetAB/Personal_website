@@ -4,24 +4,24 @@ export const portfolio = {
   identity: {
     name: "Anish Basnet",
     monogram: "AB",
-    title: "Software Developer | Java, Spring Boot, PostgreSQL, Apache Kafka | AWS Certified",
+    title: "Backend Software Engineer | Java · Spring Boot · PostgreSQL · Kafka | Building fintech & transaction systems | AWS Certified",
     location: "Greater Toronto Area, Ontario, Canada",
     email: "theanishbasnet@gmail.com",
     linkedin: "https://linkedin.com/in/theanishbasnet",
     github: "https://github.com/anishbasnetAB",
     blog: "https://dev.to/anishbasnetab",
     openTo:
-      "Open to Backend Developer, Java Developer, Software Developer, Software Engineer, and Backend Software Engineer roles in Canada, especially fintech, payments, and transaction-heavy systems",
+      "Open to backend roles in fintech, payments, and banking infrastructure across the Greater Toronto Area, Canada, or the US (hybrid or remote)",
     workAuth: "Authorized to work full-time in Canada; no current employer sponsorship required",
     cvUrl: "/Anish_Basnet_Resume.pdf",
   },
 
   hero: {
-    availability: "Open to backend software engineering opportunities in Canada",
+    availability: "Open to backend software engineering opportunities · Recruiters welcome",
     locationLine: "Greater Toronto Area, ON, Canada",
-    roleLine: "Java Backend • Spring Boot • PostgreSQL • Kafka • Financial Systems",
+    roleLine: "Java Backend • Spring Boot • PostgreSQL • Kafka • Fintech Systems",
     tagline:
-      "I build backend systems in Java, Spring Boot, and PostgreSQL where correctness has to hold under concurrency, retries, and failure. My flagship project, Ledger-Core, is a banking backend with ACID transactions, idempotent transfers, optimistic locking, double-entry bookkeeping, Kafka event processing, and automated reconciliation, stress-tested with 1,000 concurrent transfers and zero duplicate postings.",
+      "Backend Software Engineer building transaction-heavy systems where correctness has to hold under concurrency, retries, and failure. I work in Java 21 and Spring Boot with PostgreSQL, Kafka, Redis, Docker, and AWS. My flagship project, Ledger-Core, is a banking backend stress-tested with 1,000 concurrent transfers and zero duplicate postings.",
     terminal: [
       { type: 'cmd', text: 'whoami' },
       { type: 'out', text: 'anish, software developer focused on financial and distributed systems' },
@@ -42,7 +42,7 @@ export const portfolio = {
 
   about: {
     bio:
-      "Software developer with professional experience shipping Spring Boot REST APIs, database-backed services, and automated tests on a payments and inventory platform for small retailers. I work primarily with Java 21, Spring Boot, PostgreSQL, Kafka, Redis, Docker, Kubernetes, and AWS, with a focus on fintech and distributed systems. My recent work explores transaction correctness, double-entry ledgering, idempotency, concurrency control, event-driven processing, reconciliation, and production-style deployment.",
+      "Backend Software Engineer building transaction-heavy systems where correctness has to hold under concurrency, retries, and failure. I work in Java 21 and Spring Boot with PostgreSQL, Kafka, Redis, Docker, and AWS, with professional experience shipping REST APIs, database-backed services, and automated tests. My recent work explores transaction correctness, double-entry ledgering, idempotency, concurrency control, event-driven processing, reconciliation, and production-style deployment.",
     focusAreas: [
       {
         title: "Java Backend Engineering",
@@ -83,8 +83,8 @@ export const portfolio = {
   experience: [
     {
       company: "Independent",
-      role: "Backend Engineering and Professional Development",
-      period: "Jan 2026 to Present",
+      role: "Backend Software Engineer · Independent Projects",
+      period: "Jan 2026 – Present",
       subPeriod: "Greater Toronto Area, Canada",
       tech: [
         "Java 21",
@@ -107,7 +107,7 @@ export const portfolio = {
     {
       company: "NexGen",
       role: "Software Developer",
-      period: "Jan 2023 to Dec 2023",
+      period: "Jan 2023 – Dec 2023",
       subPeriod: "Digital Pasal: inventory, store-credit, and payments platform for small retailers",
       tech: ["Java", "Spring Boot", "Spring Data JPA", "Hibernate", "REST APIs", "MySQL", "React", "JUnit 5", "Mockito", "Git", "Jira", "Agile"],
       bullets: [
@@ -120,7 +120,7 @@ export const portfolio = {
     {
       company: "Leapfrog Technology",
       role: "Student Partner",
-      period: "Jan 2022 to Dec 2022",
+      period: "Jan 2022 – Dec 2022",
       tech: ["React.js", "Node.js", "JavaScript", "Code Reviews", "Web Development"],
       bullets: [
         "Completed industry-oriented training in React.js, Node.js, and JavaScript through structured exercises, peer reviews, hackathons, and collaborative development activities.",
@@ -129,7 +129,7 @@ export const portfolio = {
     {
       company: "Technobyte",
       role: "Flutter Developer Intern",
-      period: "Dec 2021 to Mar 2022",
+      period: "Dec 2021 – Mar 2022",
       tech: ["Flutter", "Dart", "MySQL", "REST APIs", "Mobile Development", "Debugging"],
       bullets: [
         "Shipped Flutter user interface features in Dart across three mobile releases, by integrating MySQL-backed REST services and building reusable components.",
