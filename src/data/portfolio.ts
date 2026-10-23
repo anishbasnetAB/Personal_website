@@ -4,8 +4,8 @@ export const portfolio = {
   identity: {
     name: "Anish Basnet",
     monogram: "AB",
-    title: "Backend Software Engineer | Java · Spring Boot · PostgreSQL · Kafka | Building fintech & transaction systems | AWS Certified",
-    location: "Greater Toronto Area, Ontario, Canada",
+    title: "Backend Software Engineer | Java · Spring Boot · PostgreSQL · Kafka | REST APIs & Distributed Systems",
+    location: "Greater Toronto Area, Canada",
     email: "theanishbasnet@gmail.com",
     linkedin: "https://linkedin.com/in/theanishbasnet",
     github: "https://github.com/anishbasnetAB",
@@ -21,28 +21,28 @@ export const portfolio = {
     locationLine: "Greater Toronto Area, ON, Canada",
     roleLine: "Java Backend • Spring Boot • PostgreSQL • Kafka • Fintech Systems",
     tagline:
-      "Backend Software Engineer building transaction-heavy systems where correctness has to hold under concurrency, retries, and failure. I work in Java 21 and Spring Boot with PostgreSQL, Kafka, Redis, Docker, and AWS. My flagship project, Ledger-Core, is a banking backend stress-tested with 1,000 concurrent transfers and zero duplicate postings.",
+      "Backend Software Engineer and Founder building reliable full-stack products and backend systems. I work with Java, Spring Boot, PostgreSQL, React Native, Expo, Next.js, and TypeScript. I am currently building Burnhive, a fitness and social platform that brings workout planning, progress tracking, gym discovery, and community engagement into one application.",
     terminal: [
       { type: 'cmd', text: 'whoami' },
       { type: 'out', text: 'anish, software developer focused on financial and distributed systems' },
-      { type: 'cmd', text: './ledgerCore verify' },
-      { type: 'out', text: 'transactions   ACID money movement with rollback protection' },
-      { type: 'out', text: 'concurrency    optimistic locking protects against stale balance updates' },
-      { type: 'out', text: 'idempotency    1,000 concurrent transfers, replayed requests, 0 duplicates' },
-      { type: 'out', text: 'ledger         double-entry, append-only records with reconciliation' },
+      { type: 'cmd', text: './burnhive status' },
+      { type: 'out', text: 'product       workout planning, progress, gyms, community' },
+      { type: 'out', text: 'backend       modular Spring Boot services and REST APIs' },
+      { type: 'out', text: 'platform      React Native, Expo, Next.js, TypeScript' },
+      { type: 'out', text: 'delivery      founder-led product development from design to testing' },
       { type: 'cmd', text: './status' },
       { type: 'out', text: 'open to backend software engineering roles in canada' },
     ] as TermLine[],
     stats: [
-      { value: "0", unit: "duplicates", label: "across 1,000 concurrent HTTP transfers" },
-      { value: "30%", unit: "faster APIs", label: "after removing N+1 queries at NexGen" },
-      { value: "3", unit: "replicas", label: "zero-downtime Kubernetes rollouts" },
+      { value: "1", unit: "working MVP", label: "Burnhive fitness and social platform" },
+      { value: "10+", unit: "REST APIs", label: "shipped at NexGen" },
+      { value: "80%+", unit: "unit coverage", label: "maintained with JUnit 5 and Mockito" },
     ],
   },
 
   about: {
     bio:
-      "Backend Software Engineer building transaction-heavy systems where correctness has to hold under concurrency, retries, and failure. I work in Java 21 and Spring Boot with PostgreSQL, Kafka, Redis, Docker, and AWS, with professional experience shipping REST APIs, database-backed services, and automated tests. My recent work explores transaction correctness, double-entry ledgering, idempotency, concurrency control, event-driven processing, reconciliation, and production-style deployment.",
+      "Backend Software Engineer and Founder with professional experience building REST APIs, backend services, and database-driven applications using Java, Spring Boot, and PostgreSQL. I am currently building Burnhive, a fitness and social platform, while developing full-stack products with React Native, Expo, Next.js, and TypeScript. I focus on modular architecture, secure user experiences, maintainable systems, and reliable delivery from system design through testing and iteration.",
     focusAreas: [
       {
         title: "Java Backend Engineering",
@@ -50,14 +50,14 @@ export const portfolio = {
           "Java 21, Spring Boot, REST APIs, service-layer business logic, Spring Data JPA, Hibernate, PostgreSQL, MySQL, Flyway migrations, validation, error handling, and automated testing.",
       },
       {
-        title: "Financial Systems and Data Integrity",
+        title: "Product and Data Foundations",
         body:
-          "ACID transactions, optimistic locking, idempotent APIs enforced at the database level, double-entry bookkeeping, append-only ledgers, BigDecimal money handling, reconciliation jobs, and failure-oriented testing.",
+          "PostgreSQL-backed application design, authentication, user data, workout management, social interactions, REST APIs, validation, and maintainable service-layer business logic.",
       },
       {
-        title: "Distributed Systems and Reliability",
+        title: "Full-Stack Product Development",
         body:
-          "Kafka producers that publish only after commit, idempotent consumers, Redis caching that degrades safely, rate limiting, concurrency control, event-driven architecture, Docker, and CI/CD.",
+          "React Native and Expo mobile development, Next.js web applications, TypeScript, responsive interfaces, API integration, testing, and iterative product improvements.",
       },
       {
         title: "Cloud and Deployment",
@@ -69,8 +69,8 @@ export const portfolio = {
       { type: 'cmd', text: './profile summary' },
       { type: 'out', text: '' },
       { type: 'out', text: 'primary      Java 21, Spring Boot, REST APIs, PostgreSQL' },
-      { type: 'out', text: 'fintech      ACID, idempotency, double-entry ledgering, reconciliation' },
-      { type: 'out', text: 'messaging    Kafka, Redis, event-driven architecture' },
+      { type: 'out', text: 'product      Burnhive fitness, workouts, gyms, community' },
+      { type: 'out', text: 'fullstack    React Native, Expo, Next.js, TypeScript' },
       { type: 'out', text: 'testing      JUnit 5, Mockito, concurrency and failure cases' },
       { type: 'out', text: 'delivery     Docker, Kubernetes, GitHub Actions CI/CD, Flyway' },
       { type: 'out', text: 'cloud        AWS Certified Cloud Practitioner; EC2 deployment' },
@@ -82,26 +82,26 @@ export const portfolio = {
 
   experience: [
     {
-      company: "Self-employed",
-      role: "Backend Engineer (Independent Projects)",
+      company: "Burnhive",
+      role: "Founder & Full-Stack Developer",
       period: "Apr 2026 – Present",
-      subPeriod: "Greater Toronto Area, Canada · Remote",
+      subPeriod: "Burnhive · Permanent Full-time · Greater Toronto Area, Canada · Remote",
       tech: [
-        "Java 21",
+        "Java",
         "Spring Boot",
         "PostgreSQL",
-        "Kafka",
-        "Redis",
-        "Docker",
-        "Kubernetes",
-        "AWS",
-        "System Design",
+        "React Native",
+        "Expo",
+        "Next.js",
+        "TypeScript",
+        "REST APIs",
+        "Distributed Systems",
       ],
       bullets: [
-        "Designing and shipping production-style backend systems focused on financial correctness, concurrency, and distributed systems after completing a postgraduate diploma in software engineering.",
-        "Built Ledger-Core, a Java 21 and Spring Boot banking backend with double-entry bookkeeping, an append-only ledger, optimistic locking, idempotent transfers, event-driven processing, and scheduled reconciliation; stress-tested 1,000 concurrent HTTP transfers with zero duplicate postings.",
-        "Built a C++20 trading exchange simulator with a price-time-priority matching engine benchmarked at 1.6M orders per second with p99 latency under 1 µs, plus pre-trade risk controls and real-time market-data distribution.",
-        "Deployed Ledger-Core on k3s with 3 replicas and zero-downtime rolling updates, and earned the AWS Certified Cloud Practitioner certification in July 2026.",
+        "Building Burnhive, a fitness and social platform that brings workout planning, progress tracking, gym discovery, and community engagement into one application.",
+        "Developed a working MVP using Java, Spring Boot, PostgreSQL, React Native, Expo, Next.js, and TypeScript.",
+        "Architecting modular backend services and REST APIs supporting authentication, workout management, social interactions, and user data.",
+        "Leading end-to-end product development across system design, implementation, testing, security, usability, and iterative improvements.",
       ],
     },
     {
@@ -142,44 +142,35 @@ export const portfolio = {
 
   projects: [
     {
-      title: "Ledger-Core: Banking Backend REST API",
+      title: "Burnhive: Fitness and Social Platform",
       featured: true,
       tags: [
-        "Java 21",
+        "Java",
         "Spring Boot",
         "PostgreSQL",
-        "Spring Data JPA",
-        "Hibernate",
-        "Kafka",
-        "Redis",
-        "Spring Security",
-        "JWT",
-        "Flyway",
-        "JUnit 5",
-        "Mockito",
-        "Docker",
-        "Kubernetes",
-        "GitHub Actions",
+        "React Native",
+        "Expo",
+        "Next.js",
+        "TypeScript",
+        "REST APIs",
+        "Distributed Systems",
       ],
       stats: [
-        { value: "0", label: "duplicate postings across 1,000 concurrent transfers" },
-        { value: "0", label: "overdrafts in 10-thread concurrency test" },
-        { value: "3", label: "replicas with zero-downtime rolling updates" },
+        { value: "1", label: "working MVP" },
+        { value: "2", label: "cross-platform surfaces: mobile and web" },
+        { value: "4", label: "core product areas: auth, workouts, social, user data" },
       ],
       problem:
-        "Financial systems must stay correct when requests are retried, transactions fail, or concurrent updates hit the same account. Ledger-Core focuses on those failure cases rather than treating money movement as basic CRUD.",
-      role: "Solo backend project covering architecture, implementation, database design, testing, reliability, and deployment.",
+        "Fitness communities need more than isolated workout tracking. Burnhive brings planning, progress, gym discovery, and social engagement together in one usable product.",
+      role: "Founder and full-stack developer leading product direction, system architecture, implementation, testing, and iteration.",
       highlights: [
-        "Achieved zero duplicate postings and fully balanced ledgers across 1,000 concurrent transfers over real HTTP against PostgreSQL (16 parallel workers, 50 requests deliberately replayed three times each), by enforcing idempotency keys with a database-level UNIQUE constraint and BigDecimal money handling.",
-        "Kept account balances correct under concurrent load by implementing double-entry bookkeeping, an append-only ledger enforced at the database level, ACID transactions, and optimistic locking; stress tested concurrent withdrawals with 10 threads and recorded 0 overdrafts.",
-        "Secured the API with Spring Security login and signup, JWT authentication, and role-based access control, and added a scheduled reconciliation job that verifies stored balances against the ledger.",
-        "Built event-driven ledger processing with an Apache Kafka producer that publishes only after the database transaction commits and idempotent consumers using atomic inserts.",
-        "Added a Redis balance cache with rate limiting that degrades safely when Redis is unavailable, so a cache outage can only make a read stale, never incorrect.",
-        "Wrote 50+ JUnit 5 and Mockito tests covering rollbacks, duplicate transfers, concurrent withdrawals, business rules, and ledger consistency.",
-        "Deployed a 3-replica Kubernetes (k3s) setup on AWS EC2 with health-gated zero-downtime rolling updates, containerized with Docker, versioned the schema with Flyway, and shipped through a GitHub Actions CI/CD pipeline.",
+        "Developed a working MVP spanning React Native and Expo mobile applications and a Next.js web application.",
+        "Built Java and Spring Boot backend services with PostgreSQL persistence and modular REST APIs.",
+        "Implemented product foundations for authentication, workout management, social interactions, and user data.",
+        "Led end-to-end delivery from system design and implementation through testing, security, usability, and iterative improvements.",
       ],
-      liveUrl: "https://ledger-core-frontend-anish.vercel.app/",
-      githubUrl: "https://github.com/anishbasnetAB/ledger-core",
+      liveUrl: "",
+      githubUrl: "",
     },
     {
       title: "Real-Time Trading Exchange Simulator",
@@ -372,7 +363,7 @@ export const portfolio = {
   ],
 
   contact: {
-    heading: "Let's build reliable backend and financial systems.",
+    heading: "Let's build reliable products and backend systems.",
     note:
       "I am looking for backend software engineering opportunities in Canada, especially Java, Spring Boot, fintech, payments, financial platforms, and other transaction-heavy systems. I am authorized to work full-time in Canada and do not currently require employer sponsorship.",
   },
