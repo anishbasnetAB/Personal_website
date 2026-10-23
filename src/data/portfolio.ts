@@ -84,7 +84,7 @@ export const portfolio = {
     {
       company: "Burnhive",
       role: "Founder & Full-Stack Developer",
-      period: "Apr 2026 – Present",
+      period: "Jan 2026 – Present",
       subPeriod: "Burnhive · Permanent Full-time · Greater Toronto Area, Canada · Remote",
       tech: [
         "Java",
